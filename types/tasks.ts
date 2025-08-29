@@ -4,3 +4,14 @@ export interface Task {
   title: string;
   isCompleted?: boolean; // Optional property
 }
+export interface TaskListProps {
+  tasks: Task[];
+  onDelete: (taskId: string) => void;
+  onCheckboxToggle: (taskId: string) => void;
+}
+
+export interface TaskItemProps {
+  task: Task;
+  onDelete: (taskId: string) => void;
+  onCheckboxToggle: (taskId: string) => void;
+}

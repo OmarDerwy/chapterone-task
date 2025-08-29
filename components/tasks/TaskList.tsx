@@ -4,12 +4,7 @@ import { FlatList, StyleSheet } from "react-native";
 import { ThemedText } from "../ThemedText";
 import { ThemedView } from "../ThemedView";
 import TaskItem from "./TaskItem";
-
-interface TaskListProps {
-  tasks: Task[];
-  onDelete: (taskId: string) => void;
-  onCheckboxToggle: (taskId: string) => void;
-}
+import { TaskListProps } from "@/types/tasks";
 
 // A component to render a list of tasks.
 export default function TaskList({

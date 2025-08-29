@@ -9,7 +9,9 @@ import Reanimated, {
 } from "react-native-reanimated";
 import { ThemedText } from "../ThemedText";
 import { ThemedView } from "../ThemedView";
+import { TaskItemProps } from "@/types/tasks";
 
+//function for the swipe left to delete logic
 function RightAction(
   prog: SharedValue<number>,
   drag: SharedValue<number>,
@@ -39,12 +41,6 @@ function RightAction(
   );
 }
 
-interface TaskItemProps {
-  task: Task;
-  onDelete: (taskId: string) => void;
-  onCheckboxToggle: (taskId: string) => void;
-}
-
 // A component for a single item in the to-do list.
 export default function TaskItem({
   task,
@@ -53,7 +49,6 @@ export default function TaskItem({
 }: TaskItemProps) {
   return (
     <ReanimatedSwipeable
-      // containerStyle={styles.swipeable}
       friction={2}
       enableTrackpadTwoFingerGesture
       rightThreshold={40}
@@ -68,7 +63,6 @@ export default function TaskItem({
           onValueChange={() => onCheckboxToggle(task.id)}
         />
         <ThemedText style={styles.title}>{task.title}</ThemedText>
-        {/* <Button title="Delete" onPress={() => onDelete(task.id)} color="#ff5c5c" /> */}
       </ThemedView>
     </ReanimatedSwipeable>
   );
@@ -91,16 +85,10 @@ const styles = StyleSheet.create({
     height: 50,
     textAlign: "center",
     textAlignVertical: "center",
-    // transform: [{ translateY: 7 }],
   },
   separator: {
     width: "100%",
     borderTopWidth: 1,
-  },
-  swipeable: {
-    // height: 50,
-    // backgroundColor: 'papayawhip',
-    alignItems: "center",
   },
   rightActionContainer: {
     backgroundColor: "red",
