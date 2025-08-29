@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.omarderwy.chapteronetask"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "baeb1f8d-2ab8-4305-8dd5-278c26934570"
+      }
     }
   }
 }
