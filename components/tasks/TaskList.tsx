@@ -46,6 +46,7 @@ export default function TaskList({
 const styles = StyleSheet.create({
   listContainer: {
     paddingBottom: 20,
+    paddingLeft: 16,
   },
   emptyContainer: {
     flex: 1,

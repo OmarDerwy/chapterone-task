@@ -64,7 +64,7 @@ export default function TaskItem({
         }
       >
         <ThemedView style={styles.container}>
-          <Checkbox
+          <Checkbox // TODO increase area of pressability for better UX
             disabled={false}
             value={task.isCompleted}
             onValueChange={(newValue) => onCheckboxToggle(task.id, newValue)}
