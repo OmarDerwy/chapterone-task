@@ -1,60 +1,40 @@
 import TaskList from "@/components//tasks/TaskList";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useTasks } from "@/hooks/useTasks";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Task } from "@/types/tasks";
+import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 
 // This is the main screen of the app.
 export default function ToDoScreen() {
-  // In a real app, this state would be managed with useState, context, or a state management library.
-  const [tasks, setTasks] = React.useState<Task[]>([
-    { id: "1", title: "Create project structure" },
-    { id: "2", title: "Build UI components" },
-    { id: "3", title: "Connect to a database" },
-  ]);
-
+  const { tasks, deleteTask, toggleTask } = useTasks();
   const fabBackgroundColor = useThemeColor({}, "tint");
   const fabTextColor = useThemeColor({}, "background");
-
-  const handleDeleteTask = (taskId: string) => {
-    // Logic to delete a task
-    setTasks((prevTasks: Task[]) =>
-      prevTasks.filter((task) => task.id !== taskId)
-    );
-    console.log("Deleting task:", taskId);
-  };
-
-  const handleCompleteTask = (taskId: string, newValue: boolean) => {
-    setTasks((prevTasks: Task[]) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, isCompleted: newValue } : task
-      )
-    );
-  };
 
   return (
     <>
       <ThemedView style={styles.container}>
         <ThemedText style={styles.title}>Task List</ThemedText>
-        <TaskList
-          tasks={tasks}
-          onDelete={handleDeleteTask}
-          onCheckboxToggle={handleCompleteTask}
-        />
-        {/* <Link href="/(modals)/add" asChild>
-              <Button title="Add New Task" />
-          </Link> */}
+        <ThemedView style={{ flex: 1 }}>
+          <TaskList
+            tasks={tasks}
+            onDelete={deleteTask}
+            onCheckboxToggle={(taskId) => toggleTask(taskId)}
+          />
+        </ThemedView>
         <ThemedView style={styles.bottom}>
+          {/* <Link href="/modals/add-task" asChild> */}
           <Pressable
             style={[styles.fab, { backgroundColor: fabBackgroundColor }]}
-            onPress={() => console.log("Add new task")}
+            onPress={() => router.push("/modals/add-task")}
           >
             <ThemedText style={[styles.fabText, { color: fabTextColor }]}>
               +
             </ThemedText>
           </Pressable>
+          {/* </Link> */}
         </ThemedView>
       </ThemedView>
     </>
@@ -78,14 +58,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   fab: {
-    // position: "absolute",
+    position: "absolute",
     width: 56,
     height: 56,
     alignItems: "center",
     justifyContent: "center",
-    margin: 40,
+    // margin: 40,
     // right: 20,
-    // bottom: 20,
+    bottom: 40,
     borderRadius: 28,
     elevation: 8, // Android shadow
     shadowColor: "#000", // iOS shadow
