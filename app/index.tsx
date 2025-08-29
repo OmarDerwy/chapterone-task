@@ -10,22 +10,36 @@ import { StyleSheet } from 'react-native';
 export default function ToDoScreen() {
   // In a real app, this state would be managed with useState, context, or a state management library.
   const [tasks, setTasks] = React.useState<Task[]>([
-    { id: '1', title: 'Create project structure' },
-    { id: '2', title: 'Build UI components' },
-    { id: '3', title: 'Connect to a database' },
+    { id: "1", title: "Create project structure" },
+    { id: "2", title: "Build UI components" },
+    { id: "3", title: "Connect to a database" },
   ]);
 
   const handleDeleteTask = (taskId: string) => {
     // Logic to delete a task
-    setTasks((prevTasks: Task[]) => prevTasks.filter(task => task.id !== taskId));
-    console.log('Deleting task:', taskId);
+    setTasks((prevTasks: Task[]) =>
+      prevTasks.filter((task) => task.id !== taskId)
+    );
+    console.log("Deleting task:", taskId);
+  };
+
+  const handleCompleteTask = (taskId: string, newValue: boolean) => {
+    setTasks((prevTasks: Task[]) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, isCompleted: newValue } : task
+      )
+    );
   };
 
   return (
     <ThemedView style={styles.container}>
-        <ThemedText style= {styles.title}>Task List</ThemedText>
-        <TaskList tasks={tasks} onDelete={handleDeleteTask} />
-        {/* <Link href="/(modals)/add" asChild>
+      <ThemedText style={styles.title}>Task List</ThemedText>
+      <TaskList
+        tasks={tasks}
+        onDelete={handleDeleteTask}
+        onCheckboxToggle={handleCompleteTask}
+      />
+      {/* <Link href="/(modals)/add" asChild>
             <Button title="Add New Task" />
         </Link> */}
     </ThemedView>

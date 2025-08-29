@@ -1,5 +1,6 @@
 import { Task } from "@/types/tasks";
-import React from "react";
+import Checkbox from "@react-native-community/checkbox";
+import React, { useEffect } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -42,10 +43,15 @@ function RightAction(
 interface TaskItemProps {
   task: Task;
   onDelete: (taskId: string) => void;
+  onCheckboxToggle: (taskId: string, newValue: boolean) => void;
 }
 
 // A component for a single item in the to-do list.
-export default function TaskItem({ task, onDelete }: TaskItemProps) {
+export default function TaskItem({
+  task,
+  onDelete,
+  onCheckboxToggle,
+}: TaskItemProps) {
   return (
     <GestureHandlerRootView>
       <ReanimatedSwipeable
@@ -58,6 +64,11 @@ export default function TaskItem({ task, onDelete }: TaskItemProps) {
         }
       >
         <ThemedView style={styles.container}>
+          <Checkbox
+            disabled={false}
+            value={task.isCompleted}
+            onValueChange={(newValue) => onCheckboxToggle(task.id, newValue)}
+          />
           <ThemedText style={styles.title}>{task.title}</ThemedText>
           {/* <Button title="Delete" onPress={() => onDelete(task.id)} color="#ff5c5c" /> */}
         </ThemedView>
