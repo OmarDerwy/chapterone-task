@@ -2,7 +2,6 @@ import { Task } from "@/types/tasks";
 import Checkbox from "expo-checkbox";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Reanimated, {
   SharedValue,
@@ -53,27 +52,25 @@ export default function TaskItem({
   onCheckboxToggle,
 }: TaskItemProps) {
   return (
-    <GestureHandlerRootView>
-      <ReanimatedSwipeable
-        // containerStyle={styles.swipeable}
-        friction={2}
-        enableTrackpadTwoFingerGesture
-        rightThreshold={40}
-        renderRightActions={(prog, drag) =>
-          RightAction(prog, drag, onDelete, task.id)
-        }
-      >
-        <ThemedView style={styles.container}>
-          <Checkbox // TODO increase area of pressability for better UX
-            disabled={false}
-            value={task.isCompleted}
-            onValueChange={() => onCheckboxToggle(task.id)}
-          />
-          <ThemedText style={styles.title}>{task.title}</ThemedText>
-          {/* <Button title="Delete" onPress={() => onDelete(task.id)} color="#ff5c5c" /> */}
-        </ThemedView>
-      </ReanimatedSwipeable>
-    </GestureHandlerRootView>
+    <ReanimatedSwipeable
+      // containerStyle={styles.swipeable}
+      friction={2}
+      enableTrackpadTwoFingerGesture
+      rightThreshold={40}
+      renderRightActions={(prog, drag) =>
+        RightAction(prog, drag, onDelete, task.id)
+      }
+    >
+      <ThemedView style={styles.container}>
+        <Checkbox // TODO increase area of pressability for better UX
+          disabled={false}
+          value={task.isCompleted}
+          onValueChange={() => onCheckboxToggle(task.id)}
+        />
+        <ThemedText style={styles.title}>{task.title}</ThemedText>
+        {/* <Button title="Delete" onPress={() => onDelete(task.id)} color="#ff5c5c" /> */}
+      </ThemedView>
+    </ReanimatedSwipeable>
   );
 }
 
