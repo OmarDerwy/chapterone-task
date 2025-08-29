@@ -1,5 +1,6 @@
 import { Task } from "@/types/tasks";
 import React, { createContext, ReactNode, useState } from "react";
+import { toast } from "sonner-native";
 
 interface TasksContextData {
   tasks: Task[];
@@ -26,17 +27,25 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
       isCompleted: false,
     };
     setTasks([...tasks, newTask]);
+    toast.success("Task added successfully");
   };
 
   const deleteTask = (id: string) => {
     setTasks(tasks.filter((task) => task.id !== id));
+    toast(`Task deleted successfully`);
   };
 
   const toggleTask = (id: string) => {
     setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
-      )
+      tasks.map((task) => {
+        if (task.id === id) {
+          if (!task.isCompleted) {
+            toast.success("Task marked as completed");
+          }
+          return { ...task, isCompleted: !task.isCompleted };
+        }
+        return task;
+      })
     );
   };
 
