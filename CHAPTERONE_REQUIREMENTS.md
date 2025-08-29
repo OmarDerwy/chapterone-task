@@ -34,12 +34,15 @@ completing or deleting a task).
 require external storage or more advanced state management solutions.
 
 ● Demonstrate basic understanding of state and props in React Native.
-Documentation:
 
-    ● Include a README.md file with:
-    ● Instructions for setting up and running the app.
-    ● A brief overview of the app's features and any special instructions
-    for using it.
+#### Documentation:
+
+Include a README.md file with:
+
+● Instructions for setting up and running the app.
+
+● A brief overview of the app's features and any special instructions
+for using it.
 
 ● Mention any third-party libraries used and their purpose in your
 project.
