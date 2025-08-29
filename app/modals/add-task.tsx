@@ -1,5 +1,6 @@
 import { ThemedView } from "@/components/ThemedView";
 import { useTasks } from "@/hooks/useTasks";
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -9,12 +10,15 @@ import {
   Pressable,
   StyleSheet,
   TextInput,
+  useColorScheme,
 } from "react-native";
 
 export default function AddTaskModal() {
   const [title, setTitle] = useState("");
   const { addTask } = useTasks();
   const router = useRouter();
+  const colorScheme = useColorScheme();
+  const modalBackgroundColor = useThemeColor({}, "modalBorder");
 
   const handleAddTask = () => {
     if (title.trim()) {
@@ -30,10 +34,18 @@ export default function AddTaskModal() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <BlurView intensity={30} style={StyleSheet.absoluteFill} />
+      <BlurView
+        intensity={colorScheme === "dark" ? 30 : 200}
+        style={StyleSheet.absoluteFill}
+      />
       <Pressable style={styles.backdrop} onPress={() => router.back()}>
         <Pressable style={styles.modal} onPress={(e) => e.stopPropagation()}>
-          <ThemedView style={styles.modalView}>
+          <ThemedView
+            style={{
+              ...styles.modalView,
+              backgroundColor: modalBackgroundColor,
+            }}
+          >
             <TextInput
               style={styles.input}
               placeholder="Enter your task"
@@ -58,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 80,
+    paddingTop: 160,
   },
   modal: {
     width: "90%",
@@ -68,7 +80,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     padding: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    // backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
   input: {
     height: 50,
