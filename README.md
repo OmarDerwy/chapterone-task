@@ -1,4 +1,8 @@
 # Omar Elderwy's submission
+![Light mode tasks view](light_tasks.png)
+![Dark mode tasks view](dark_tasks.png)
+![Light mode modal view](light_modal.png)
+![Dark mode modal view](dark_modal.png)
 
 Todo list app developed using react native expo
 
