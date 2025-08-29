@@ -38,6 +38,7 @@ You can start developing by editing the files inside the **app** directory. This
 - tap checkbox to complete tasks
 - press + button on the bottom to open modal to enter a new task
 - each action is emphasized by a toast confirming the action
+- dark mode and light mode available
 
 ## Third party libraries
 
