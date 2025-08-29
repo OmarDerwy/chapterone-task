@@ -1,3 +1,5 @@
+import { TasksProvider } from "@/context/TasksProvider";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import {
   DarkTheme,
   DefaultTheme,
@@ -6,10 +8,9 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-
-import { TasksProvider } from "@/context/TasksProvider";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { Toaster } from "sonner-native";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -23,22 +24,25 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <TasksProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="modals/add-task"
-            options={{
-              presentation: "transparentModal",
-              animation: "fade",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </TasksProvider>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <TasksProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="modals/add-task"
+              options={{
+                presentation: "transparentModal",
+                animation: "fade",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </TasksProvider>
+        <StatusBar style="auto" />
+        <Toaster offset={50} invert={true} />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
