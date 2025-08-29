@@ -1,4 +1,4 @@
-import { Task } from "@/types/tasks";
+import { TaskItemProps } from "@/types/tasks";
 import Checkbox from "expo-checkbox";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
@@ -31,46 +31,50 @@ const RightAction = React.memo(
     onDelete: (taskId: string) => void;
     taskId: string;
   }) => {
-  const styleAnimation = useAnimatedStyle(() => {
-    console.log("showRightProgress:", prog.value);
-    console.log("appliedTranslation:", drag.value);
+    const styleAnimation = useAnimatedStyle(() => {
+      return {
+        transform: [{ translateX: drag.value + 70 }],
+      };
+    });
 
-    return {
-      transform: [{ translateX: drag.value + 70 }],
-    };
-  });
+    return (
+      <Reanimated.View style={{ ...styleAnimation }}>
+        <ThemedView style={styles.rightActionContainer}>
+          <Pressable
+            onPress={() => onDelete(taskId)}
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <ThemedText style={styles.rightAction}>Delete</ThemedText>
+          </Pressable>
+        </ThemedView>
+      </Reanimated.View>
+    );
+  }
+);
 
-  return (
-    <Reanimated.View style={{ ...styleAnimation }}>
-      <ThemedView style={styles.rightActionContainer}>
-        <Pressable
-          onPress={() => onDelete(taskId)}
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-          <ThemedText style={styles.rightAction}>Delete</ThemedText>
-        </Pressable>
-      </ThemedView>
-    </Reanimated.View>
-  );
-}
-
-// A component for a single item in the to-do list.
-export default function TaskItem({
-  task,
-  onDelete,
-  onCheckboxToggle,
-}: TaskItemProps) {
+/**
+ * @function TaskItem
+ * @description A component for a single item in the to-do list.
+ * @param {TaskItemProps} props - The props for the component.
+ * @returns {JSX.Element} - A JSX element that renders a single task item.
+ */
+const TaskItem = ({ task, onDelete, onCheckboxToggle }: TaskItemProps) => {
   return (
     <ReanimatedSwipeable
       friction={2}
       enableTrackpadTwoFingerGesture
       rightThreshold={40}
-      renderRightActions={(prog, drag) =>
-        RightAction(prog, drag, onDelete, task.id)
-      }
+      renderRightActions={(prog, drag) => (
+        <RightAction
+          prog={prog}
+          drag={drag}
+          onDelete={onDelete}
+          taskId={task.id}
+        />
+      )}
     >
       <ThemedView style={styles.container}>
-        <Checkbox // TODO increase area of pressability for better UX
+        <Checkbox
           disabled={false}
           value={task.isCompleted}
           onValueChange={() => onCheckboxToggle(task.id)}

@@ -6,7 +6,12 @@ import { ThemedView } from "../ThemedView";
 import TaskItem from "./TaskItem";
 import { TaskListProps } from "@/types/tasks";
 
-// A component to render a list of tasks.
+/**
+ * @function TaskList
+ * @description A component to render a list of tasks.
+ * @param {TaskListProps} props - The props for the component.
+ * @returns {JSX.Element} - A JSX element that renders a list of tasks or a message if the list is empty.
+ */
 export default function TaskList({
   tasks,
   onDelete,
