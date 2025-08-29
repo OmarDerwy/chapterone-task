@@ -1,8 +1,7 @@
 # Omar Elderwy's submission
-![Light mode tasks view](light_tasks.png)
-![Dark mode tasks view](dark_tasks.png)
-![Light mode modal view](light_modal.png)
-![Dark mode modal view](dark_modal.png)
+<div align="center"><img src="light_tasks.jpg" width="20%"><img src="dark_tasks.jpg" width="20%"><img src="light_modal.jpg" width="20%"><img src="dark_modal.jpg" width="20%"></div>
+
+
 
 Todo list app developed using react native expo
 
