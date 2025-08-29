@@ -13,6 +13,7 @@ import {
   useColorScheme,
 } from "react-native";
 
+// component for displaying the modal responsible for adding tasks
 export default function AddTaskModal() {
   const [title, setTitle] = useState("");
   const { addTask } = useTasks();
@@ -22,9 +23,11 @@ export default function AddTaskModal() {
 
   const handleAddTask = () => {
     if (title.trim()) {
+      // if there is a task add it and close the modal
       addTask(title.trim());
       router.back();
     } else {
+      // if text input is empty then just go back
       router.back();
     }
   };

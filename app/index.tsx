@@ -10,6 +10,8 @@ import { Pressable, StyleSheet } from "react-native";
 // This is the main screen of the app.
 export default function ToDoScreen() {
   const { tasks, deleteTask, toggleTask } = useTasks();
+
+  // These are the colors for the circular "add tasks" button at the bottom
   const fabBackgroundColor = useThemeColor({}, "tint");
   const fabTextColor = useThemeColor({}, "background");
 
