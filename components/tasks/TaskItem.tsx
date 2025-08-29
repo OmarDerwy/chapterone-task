@@ -1,6 +1,6 @@
 import { Task } from "@/types/tasks";
-import Checkbox from "@react-native-community/checkbox";
-import React, { useEffect } from "react";
+import Checkbox from "expo-checkbox";
+import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -80,12 +80,13 @@ export default function TaskItem({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
     padding: 15,
     marginVertical: 5,
   },
   title: {
+    marginLeft: 20,
     fontSize: 16,
   },
   rightAction: {
