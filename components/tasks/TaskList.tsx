@@ -8,7 +8,7 @@ import TaskItem from "./TaskItem";
 interface TaskListProps {
   tasks: Task[];
   onDelete: (taskId: string) => void;
-  onCheckboxToggle: (taskId: string, newValue: boolean) => void;
+  onCheckboxToggle: (taskId: string) => void;
 }
 
 // A component to render a list of tasks.

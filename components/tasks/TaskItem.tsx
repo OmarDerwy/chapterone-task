@@ -43,7 +43,7 @@ function RightAction(
 interface TaskItemProps {
   task: Task;
   onDelete: (taskId: string) => void;
-  onCheckboxToggle: (taskId: string, newValue: boolean) => void;
+  onCheckboxToggle: (taskId: string) => void;
 }
 
 // A component for a single item in the to-do list.
@@ -67,7 +67,7 @@ export default function TaskItem({
           <Checkbox // TODO increase area of pressability for better UX
             disabled={false}
             value={task.isCompleted}
-            onValueChange={(newValue) => onCheckboxToggle(task.id, newValue)}
+            onValueChange={() => onCheckboxToggle(task.id)}
           />
           <ThemedText style={styles.title}>{task.title}</ThemedText>
           {/* <Button title="Delete" onPress={() => onDelete(task.id)} color="#ff5c5c" /> */}
