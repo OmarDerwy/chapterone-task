@@ -63,6 +63,8 @@ You can start developing by editing the files inside the **app** directory. This
 - add filter to sort tasks alphabetically or by task creation date
 - add bulk delete completed tasks to clean up the view
 
-## App first draft design
+## Early design draft
 
-<div align="center"><img src="task-design.jpg" width="80%"></div>
+<div align="center"><img src="task-design.png" width="80%"></div>
+
+Note: Blur Effect isn't a Blur on Android and is instead a fill effect because of issues with the Expo-Blur implementation on Android
