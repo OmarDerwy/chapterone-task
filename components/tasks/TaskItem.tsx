@@ -80,8 +80,17 @@ export default function TaskItem({
           disabled={false}
           value={task.isCompleted}
           onValueChange={() => onCheckboxToggle(task.id)}
+          style={styles.completed}
         />
-        <ThemedText style={styles.title}>{task.title}</ThemedText>
+        <ThemedText
+          style={
+            task.isCompleted
+              ? { ...styles.title, ...styles.completed }
+              : { ...styles.title }
+          }
+        >
+          {task.title}
+        </ThemedText>
       </ThemedView>
     </ReanimatedSwipeable>
   );
@@ -112,5 +121,8 @@ const styles = StyleSheet.create({
   rightActionContainer: {
     backgroundColor: "red",
     flex: 1,
+  },
+  completed: {
+    opacity: 0.5,
   },
 });
