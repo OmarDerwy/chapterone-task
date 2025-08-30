@@ -55,3 +55,14 @@ You can start developing by editing the files inside the **app** directory. This
 - expo-status-bar: utility that controls and changes the color of the status bar
 - react-native-gesture-handler, react-native-reanimated, react-native-screens, react-native-svg, react-native-webview: are used together for both the swiping ability of the tasks to delete them and the sonner-native library that enables toasts
 - sonner-native: enables toasts that look good
+
+## Suggestions beyond task scope
+
+- add async storage to keep tasks persisting everytime the app is opened.
+- add a task description page to change other task variables like due time, etc.
+- add filter to sort tasks alphabetically or by task creation date
+- add bulk delete completed tasks to clean up the view
+
+## App first draft design
+
+<div align="center"><img src="task-design.jpg" width="80%"></div>
