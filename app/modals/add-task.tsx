@@ -13,7 +13,11 @@ import {
   useColorScheme,
 } from "react-native";
 
-// component for displaying the modal responsible for adding tasks
+/**
+ * @function AddTaskModal
+ * @description A modal component for adding new tasks.
+ * @returns {JSX.Element} - A JSX element that renders the add task modal.
+ */
 export default function AddTaskModal() {
   const [title, setTitle] = useState("");
   const { addTask } = useTasks();
@@ -21,13 +25,17 @@ export default function AddTaskModal() {
   const colorScheme = useColorScheme();
   const modalBackgroundColor = useThemeColor({}, "modalBorder");
 
+  /**
+   * @function handleAddTask
+   * @description Handles the addition of a new task.
+   */
   const handleAddTask = () => {
     if (title.trim()) {
-      // if there is a task add it and close the modal
+      // If there is a task, add it and close the modal
       addTask(title.trim());
       router.back();
     } else {
-      // if text input is empty then just go back
+      // If the text input is empty, just go back
       router.back();
     }
   };
@@ -83,7 +91,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     padding: 20,
-    // backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
   input: {
     height: 50,

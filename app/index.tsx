@@ -7,7 +7,11 @@ import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-// This is the main screen of the app.
+/**
+ * @function ToDoScreen
+ * @description The main screen of the application, displaying the list of tasks and a button to add new tasks.
+ * @returns {JSX.Element} - A JSX element that renders the main screen.
+ */
 export default function ToDoScreen() {
   const { tasks, deleteTask, toggleTask } = useTasks();
 
@@ -23,11 +27,10 @@ export default function ToDoScreen() {
           <TaskList
             tasks={tasks}
             onDelete={deleteTask}
-            onCheckboxToggle={(taskId) => toggleTask(taskId)}
+            onCheckboxToggle={toggleTask}
           />
         </ThemedView>
         <ThemedView style={styles.bottom}>
-          {/* <Link href="/modals/add-task" asChild> */}
           <Pressable
             style={[styles.fab, { backgroundColor: fabBackgroundColor }]}
             onPress={() => router.push("/modals/add-task")}
@@ -36,7 +39,6 @@ export default function ToDoScreen() {
               +
             </ThemedText>
           </Pressable>
-          {/* </Link> */}
         </ThemedView>
       </ThemedView>
     </>

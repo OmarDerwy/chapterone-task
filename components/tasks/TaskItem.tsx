@@ -9,9 +9,16 @@ import Reanimated, {
 } from "react-native-reanimated";
 import { ThemedText } from "../ThemedText";
 import { ThemedView } from "../ThemedView";
-import { TaskItemProps } from "@/types/tasks";
 
-//function for the swipe left to delete logic
+/**
+ * @function RightAction
+ * @description A component that renders the right action (delete button) for the swipeable task item.
+ * @param {SharedValue<number>} prog - The progress of the swipe gesture.
+ * @param {SharedValue<number>} drag - The drag value of the swipe gesture.
+ * @param {(taskId: string) => void} onDelete - A function to handle the deletion of a task.
+ * @param {string} taskId - The ID of the task.
+ * @returns {JSX.Element} - A JSX element that renders the delete button.
+ */
 function RightAction(
   prog: SharedValue<number>,
   drag: SharedValue<number>,
@@ -39,6 +46,18 @@ function RightAction(
       </ThemedView>
     </Reanimated.View>
   );
+}
+
+/**
+ * @function TaskItem
+ * @description A component for a single item in the to-do list.
+ * @param {TaskItemProps} props - The props for the component.
+ * @returns {JSX.Element} - A JSX element that renders a single task item.
+ */
+interface TaskItemProps {
+  task: Task;
+  onDelete: (taskId: string) => void;
+  onCheckboxToggle: (taskId: string) => void;
 }
 
 // A component for a single item in the to-do list.
